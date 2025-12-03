@@ -637,6 +637,26 @@ class MtMCrossCurrencyBasisSwapRateHelper : public RateHelper {
 										Integer paymentLag = 0);
 };
 
+%shared_ptr(NonDeliverableConstNotionalCrossCurrencySwapRateHelper)
+class NonDeliverableConstNotionalCrossCurrencySwapRateHelper : public RateHelper {
+  public:
+    NonDeliverableConstNotionalCrossCurrencySwapRateHelper(
+        const Handle<Quote>& fixedRate,
+        const Period& tenor,
+        Natural fixingDays,
+        const Calendar& calendar,
+        BusinessDayConvention convention,
+        bool endOfMonth,
+        Frequency fixedFrequency,
+        const DayCounter& fixedDayCount,
+        const ext::shared_ptr<IborIndex>& floatIndex,
+        Handle<YieldTermStructure> collateralCurve,
+        bool collateralOnFixedLeg,
+        Frequency floatingFrequency = NoFrequency,
+        Integer paymentLag = 0,
+        Integer fxFixingDelay = 2);
+};
+
 %shared_ptr(IborIborBasisSwapRateHelper)
 class IborIborBasisSwapRateHelper : public RateHelper {
   public:
