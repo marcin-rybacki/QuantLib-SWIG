@@ -48,6 +48,7 @@ using QuantLib::OvernightIndexFutureRateHelper;
 using QuantLib::SofrFutureRateHelper;
 using QuantLib::ConstNotionalCrossCurrencyBasisSwapRateHelper;
 using QuantLib::MtMCrossCurrencyBasisSwapRateHelper;
+using QuantLib::NonDeliverableConstNotionalCrossCurrencySwapRateHelper;
 using QuantLib::IborIborBasisSwapRateHelper;
 using QuantLib::OvernightIborBasisSwapRateHelper;
 %}
