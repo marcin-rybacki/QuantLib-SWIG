@@ -46,6 +46,7 @@ using QuantLib::DatedOISRateHelper;
 using QuantLib::FxSwapRateHelper;
 using QuantLib::OvernightIndexFutureRateHelper;
 using QuantLib::SofrFutureRateHelper;
+using QuantLib::ConstNotionalCrossCurrencySwapRateHelper;
 using QuantLib::ConstNotionalCrossCurrencyBasisSwapRateHelper;
 using QuantLib::MtMCrossCurrencyBasisSwapRateHelper;
 using QuantLib::NonDeliverableConstNotionalCrossCurrencySwapRateHelper;
@@ -601,6 +602,23 @@ class SofrFutureRateHelper : public OvernightIndexFutureRateHelper {
                          Real convexityAdjustment = 0.0);
 };
 
+%shared_ptr(ConstNotionalCrossCurrencySwapRateHelper)
+class ConstNotionalCrossCurrencySwapRateHelper : public RateHelper {
+  public:
+    ConstNotionalCrossCurrencySwapRateHelper(const Handle<Quote>& fixedRate,
+                                             const Period& tenor,
+                                             Natural fixingDays,
+                                             Calendar calendar,
+                                             BusinessDayConvention convention,
+                                             bool endOfMonth,
+                                             Frequency fixedFrequency,
+                                             const DayCounter& fixedDayCount,
+                                             ext::shared_ptr<IborIndex> floatIndex,
+                                             Handle<YieldTermStructure> collateralCurve,
+                                             bool collateralOnFixedLeg,
+                                             Integer paymentLag = 0);
+};
+
 %shared_ptr(ConstNotionalCrossCurrencyBasisSwapRateHelper)
 class ConstNotionalCrossCurrencyBasisSwapRateHelper : public RateHelper {
   public:
@@ -615,8 +633,8 @@ class ConstNotionalCrossCurrencyBasisSwapRateHelper : public RateHelper {
                                                   Handle<YieldTermStructure> collateralCurve,
                                                   bool isFxBaseCurrencyCollateralCurrency,
                                                   bool isBasisOnFxBaseCurrencyLeg,
-												  Frequency paymentFrequency = NoFrequency,
-												  Integer paymentLag = 0);
+                                                  Frequency paymentFrequency = NoFrequency,
+                                                  Integer paymentLag = 0);
 };
 
 %shared_ptr(MtMCrossCurrencyBasisSwapRateHelper)
@@ -634,8 +652,8 @@ class MtMCrossCurrencyBasisSwapRateHelper : public RateHelper {
                                         bool isFxBaseCurrencyCollateralCurrency,
                                         bool isBasisOnFxBaseCurrencyLeg,
                                         bool isFxBaseCurrencyLegResettable,
-										Frequency paymentFrequency = NoFrequency,
-										Integer paymentLag = 0);
+                                        Frequency paymentFrequency = NoFrequency,
+                                        Integer paymentLag = 0);
 };
 
 %shared_ptr(NonDeliverableConstNotionalCrossCurrencySwapRateHelper)
