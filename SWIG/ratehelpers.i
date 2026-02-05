@@ -616,6 +616,7 @@ class ConstNotionalCrossCurrencySwapRateHelper : public RateHelper {
                                              ext::shared_ptr<IborIndex> floatIndex,
                                              Handle<YieldTermStructure> collateralCurve,
                                              bool collateralOnFixedLeg,
+                                             Frequency floatingFrequency = NoFrequency,
                                              Integer paymentLag = 0);
 };
 
